@@ -1,4 +1,6 @@
+import 'stylesheets/main.scss'
 import {ReactNode} from "react";
+import {MainLayout} from "layouts";
 
 export const metadata = {
   title: 'Movie',
@@ -8,7 +10,11 @@ export const metadata = {
 const RootLayout = ({children}: { children: ReactNode }) => {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <MainLayout>
+          {children}
+        </MainLayout>
+      </body>
     </html>
   )
 }
