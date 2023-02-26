@@ -6,11 +6,8 @@ const nextConfig = {
     appDir: true
   },
   sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
     prependData: `
-     @import "stylesheets/abstracts/functions.scss";
-     @import "stylesheets/abstracts/variables.scss";
-     @import "stylesheets/abstracts/mixins.scss";
+     @import "stylesheets/abstracts/index.scss";
      `
   }
 }
