@@ -4,7 +4,7 @@
   padding: 1.6rem;
   text-shadow: 0 4rem 4rem rgba(0, 0, 0, 0.12);
   box-shadow: 0 1.6rem 1.6rem 0.4rem rgba(0, 0, 0, 0.12);
-  //border-radius: 4rem;
+  border-radius: 4rem;
   transition: 0.5s ease-in-out;
   width: 100%;
   max-width: 28.8rem;
@@ -33,17 +33,28 @@
     &:hover {
       background: $white-btn-background-hover;
     }
+
   }
   &.gradient {
-    background-image:
-    radial-gradient(circle at 100% 100%, transparent 31px, #0feffd 31px, #0feffd 32px, transparent 32px),
-    linear-gradient(to right, #0feffd, #ff00f5),
-    radial-gradient(circle at 0% 100%, transparent 31px, #ff00f5 31px, #ff00f5 32px, transparent 32px),
-    linear-gradient(to bottom, #ff00f5, #0feffd), radial-gradient(circle at 0% 0%, transparent 31px, #0feffd 31px, #0feffd 32px, transparent 32px), linear-gradient(to left, #0feffd, #0feffd),
-    radial-gradient(circle at 100% 0%, transparent 31px, #0feffd 31px, #0feffd 32px, transparent 32px);
-    background-size: 32px 32px, calc(100% - 64px) 1px, 32px 32px, 1px calc(100% - 64px);
-    background-position: top left,top center,top right,center right, bottom right,bottom center,bottom left,center left;
-    background-repeat: no-repeat;
+    position: relative;
+    z-index: 0;
+
+    &:before {
+      @include overlay {
+        padding: 0.05rem;
+        border-radius: 4rem;
+        background: linear-gradient(135.87deg, #0FEFFD 1.25%, #FF00F5 51.73%, rgba(15, 239, 253, 0.22) 77.22%);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+      }
+    }
+    &:hover {
+      &:before {
+        @include overlay {
+          //mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        }
+      }
+    }
   }
 }
 

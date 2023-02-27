@@ -15,9 +15,9 @@ export const FeaturedMovie: FC<FeaturedMovieProps> = () => {
 					<Rating color='white' count={5}/>
 					<Title typeTitle='h1' size='l'>Detroit: Become Human</Title>
 					<p>
-						In a time when monsters walk the Earth, humanity’s fight for its future sets Godzilla and Kong on a collision
-						course that will see the two most powerful forces of nature on the planet collide in a spectacular battle for
-						the ages.
+						Set in Detroit City during the year 2036, the city has been revitalized by the invention and introduction of Androids into everyday life.
+						But when Androids start behaving as if they are alive, events begin to spin out of
+						Step into the roles of the story’s pivotal three playable characters, each with unique perspectives as they face their new way of life.
 					</p>
 					<Button appearance='gradient' typeBtn='button'>
 						Watch now
