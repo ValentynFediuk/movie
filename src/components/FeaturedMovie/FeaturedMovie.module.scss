@@ -1,0 +1,16 @@
+.movie {
+  background: image('mock-hero-bg.jpeg') no-repeat center / cover;
+  width: 100%;
+  height: 64.8rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  &_info {
+    width: 100%;
+    max-width: 63.2rem;
+  }
+  &:after {
+    background: linear-gradient(269.96deg, rgba(29, 29, 29, 0) 0.04%, rgba(29, 29, 29, 0.8) 99.5%);
+  }
+}

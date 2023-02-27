@@ -2,11 +2,22 @@
 // This file contains very basic styles.
 // -----------------------------------------------------------------------------
 
+:root {
+  font-size: 62.5%
+}
+
 /**
  * Set up a decent box model on the root element
  */
+
 html {
   box-sizing: border-box;
+}
+
+body {
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 3.2rem;
 }
 
 /**

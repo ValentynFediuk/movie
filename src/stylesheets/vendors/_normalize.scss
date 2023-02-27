@@ -197,6 +197,10 @@ button,
 [type="reset"],
 [type="submit"] {
   -webkit-appearance: button;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  background-color: inherit;
 }
 
 /**

@@ -20,7 +20,7 @@ $code-font-stack: 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',
 
 /// Copy text color
 /// @type Color
-$text-color: rgb(34, 34, 34) !default;
+$text-color: #FFFFFF !default;
 
 /// Main brand color
 /// @type Color
@@ -39,12 +39,38 @@ $mid-grey: rgb(153, 153, 153) !default;
 $dark-grey: rgb(68, 68, 68) !default;
 
 
+$dark: #1D1D1D;
+$primary-teal: #0FEFFD;
+$primary-white: #FFFFFF;
+
+// Buttons
+$primary-btn-background: #E10856;
+$primary-btn-background-hover: #BA104D;
+
+$secondary-btn-border: #E10856;
+$secondary-btn-background: #1D1D1D;
+$secondary-btn-background-hover: #2C2C2C;
+
+$white-btn-border: #FFFFFF;
+$white-btn-background: #1D1D1D;
+$white-btn-background-hover: #2C2C2C;
+
+$gradient-btn-background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)) padding-box,
+linear-gradient(135.87deg, #0FEFFD 1.25%, #FF00F5 51.73%, rgba(15, 239, 253, 0.22) 77.22%) border-box;
+$gradient-btn-hover-background: linear-gradient(#2C2C2C 30%, #2C2C2C 30%) padding-box,
+linear-gradient(135.87deg, #0FEFFD 1.25%, #FF00F5 51.73%, rgba(15, 239, 253, 0.22) 77.22%) border-box;
 
 
+$test: linear-gradient(135.87deg, #0FEFFD 1.25%, #FF00F5 51.73%, rgba(15, 239, 253, 0.22) 77.22%);
+
+
+
+
+$body-font-size: 1.6rem;
 
 /// Container's maximum width
 /// @type Length
-$max-width: 1180px !default;
+$max-width: 1266px !default;
 
 
 

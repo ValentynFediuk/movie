@@ -1,0 +1,52 @@
+.btn {
+  font-size: 1.8rem;
+  line-height: 2.4rem;
+  padding: 1.6rem;
+  text-shadow: 0 4rem 4rem rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1.6rem 1.6rem 0.4rem rgba(0, 0, 0, 0.12);
+  //border-radius: 4rem;
+  transition: 0.5s ease-in-out;
+  width: 100%;
+  max-width: 28.8rem;
+
+  &.primary {
+    background: $primary-btn-background;
+
+    &:hover {
+      background: $primary-btn-background-hover;
+    }
+  }
+
+  &.secondary {
+    border: 0.1rem solid $secondary-btn-border;
+    background: $secondary-btn-background;
+
+    &:hover {
+      background: $secondary-btn-background-hover;
+    }
+  }
+
+  &.white {
+    border: 0.1rem solid $white-btn-border;
+    background: $white-btn-background;
+
+    &:hover {
+      background: $white-btn-background-hover;
+    }
+  }
+  &.gradient {
+    background-image:
+    radial-gradient(circle at 100% 100%, transparent 31px, #0feffd 31px, #0feffd 32px, transparent 32px),
+    linear-gradient(to right, #0feffd, #ff00f5),
+    radial-gradient(circle at 0% 100%, transparent 31px, #ff00f5 31px, #ff00f5 32px, transparent 32px),
+    linear-gradient(to bottom, #ff00f5, #0feffd), radial-gradient(circle at 0% 0%, transparent 31px, #0feffd 31px, #0feffd 32px, transparent 32px), linear-gradient(to left, #0feffd, #0feffd),
+    radial-gradient(circle at 100% 0%, transparent 31px, #0feffd 31px, #0feffd 32px, transparent 32px);
+    background-size: 32px 32px, calc(100% - 64px) 1px, 32px 32px, 1px calc(100% - 64px);
+    background-position: top left,top center,top right,center right, bottom right,bottom center,bottom left,center left;
+    background-repeat: no-repeat;
+  }
+}
+
+//&:hover {
+//  border: 0.1rem solid $gradient-btn-border-hover;
+//}

@@ -15,19 +15,6 @@
   'base/typography',
   'base/helpers';
 
-// 4. Layout-related sections
-@import
-  'layout/header',
-  'layout/footer';
-
-// 5. Components
-@import
-  'components/button';
-
-// 6. Page-specific styles
-@import
-  'pages/home';
-
-// 7. Themes
+// 4. Themes
 @import
   'themes/default';

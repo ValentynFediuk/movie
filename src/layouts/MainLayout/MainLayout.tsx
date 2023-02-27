@@ -6,9 +6,8 @@ export const MainLayout: FC<MainLayoutProps> = ({ children }) => {
 
   return (
     <div>
-      <Header>fdsfds</Header>
+      <Header />
         {children}
     </div>
-
   );
 };

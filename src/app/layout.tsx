@@ -1,15 +1,23 @@
 import 'stylesheets/main.scss'
 import {ReactNode} from "react";
 import {MainLayout} from "layouts";
+import { Roboto } from 'next/font/google';
 
 export const metadata = {
   title: 'Movie',
   description: 'Movie App',
 }
 
-const RootLayout = ({children}: { children: ReactNode }) => {
-  return (
-    <html lang="en">
+const roboto = Roboto({
+  weight: ['400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap'
+})
+
+
+
+const RootLayout = ({children}: { children: ReactNode }) => (
+    <html className={roboto.className} lang='en'>
       <body>
         <MainLayout>
           {children}
@@ -17,6 +25,5 @@ const RootLayout = ({children}: { children: ReactNode }) => {
       </body>
     </html>
   )
-}
 
 export default RootLayout
