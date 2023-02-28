@@ -10,7 +10,7 @@ export const Rating: FC<RatingProps> = ( {
 
 	const components = Array.from({ length: count }, (_, index) => (
 		<svg key={index} viewBox='0 0 24 24' className={styles.star}>
-			<use xlinkHref='/icons/sprite.svg#star' />
+			<use href='/icons/sprite.svg#star' />
 		</svg>
 	));
 

@@ -44,6 +44,10 @@ $primary-teal: #0FEFFD;
 $primary-white: #FFFFFF;
 
 // Buttons
+$button-border-radius: 4rem;
+$button-text-shadow: 0 4rem 4rem rgba(0, 0, 0, 0.12);
+$button-box-shadow: 0 1.6rem 1.6rem 0.4rem rgba(0, 0, 0, 0.12);
+
 $primary-btn-background: #E10856;
 $primary-btn-background-hover: #BA104D;
 
@@ -55,10 +59,10 @@ $white-btn-border: #FFFFFF;
 $white-btn-background: #1D1D1D;
 $white-btn-background-hover: #2C2C2C;
 
-$gradient-btn-background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)) padding-box,
-linear-gradient(135.87deg, #0FEFFD 1.25%, #FF00F5 51.73%, rgba(15, 239, 253, 0.22) 77.22%) border-box;
-$gradient-btn-hover-background: linear-gradient(#2C2C2C 30%, #2C2C2C 30%) padding-box,
-linear-gradient(135.87deg, #0FEFFD 1.25%, #FF00F5 51.73%, rgba(15, 239, 253, 0.22) 77.22%) border-box;
+$gradient-btn-background: linear-gradient(135.87deg, #0FEFFD 1.25%, #FF00F5 51.73%, rgba(15, 239, 253, 0.22) 77.22%);
+$gradient-btn-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+
+$gradient-btn-hover-background: linear-gradient(rgba(44, 44, 44, 0.3) 0 0) content-box, linear-gradient(rgba(44, 44, 44, 0.3) 0 0);
 
 
 $test: linear-gradient(135.87deg, #0FEFFD 1.25%, #FF00F5 51.73%, rgba(15, 239, 253, 0.22) 77.22%);

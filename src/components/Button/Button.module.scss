@@ -1,10 +1,11 @@
 .btn {
   font-size: 1.8rem;
+  font-weight: 500;
   line-height: 2.4rem;
   padding: 1.6rem;
-  text-shadow: 0 4rem 4rem rgba(0, 0, 0, 0.12);
-  box-shadow: 0 1.6rem 1.6rem 0.4rem rgba(0, 0, 0, 0.12);
-  border-radius: 4rem;
+  text-shadow: $button-text-shadow;
+  box-shadow: $button-box-shadow;
+  border-radius: $button-border-radius;
   transition: 0.5s ease-in-out;
   width: 100%;
   max-width: 28.8rem;
@@ -35,29 +36,29 @@
     }
 
   }
+
   &.gradient {
     position: relative;
     z-index: 0;
 
     &:before {
       @include overlay {
-        padding: 0.05rem;
-        border-radius: 4rem;
-        background: linear-gradient(135.87deg, #0FEFFD 1.25%, #FF00F5 51.73%, rgba(15, 239, 253, 0.22) 77.22%);
-        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        padding: 0.1rem;
+        border-radius: $button-border-radius;
+        background: $gradient-btn-background;
+        mask: $gradient-btn-mask;
         mask-composite: exclude;
       }
     }
+
     &:hover {
-      &:before {
+      &:after {
         @include overlay {
-          //mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          border-radius: $button-border-radius;
+          background: $gradient-btn-hover-background;
+          z-index: -1;
         }
       }
     }
   }
 }
-
-//&:hover {
-//  border: 0.1rem solid $gradient-btn-border-hover;
-//}

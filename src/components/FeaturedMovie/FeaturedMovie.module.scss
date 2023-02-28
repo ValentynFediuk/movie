@@ -5,10 +5,13 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 1.6rem;
   &_info {
     width: 100%;
     max-width: 63.2rem;
+    display: inline-flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 1.6rem;
   }
   &:after {
     background: linear-gradient(269.96deg, rgba(29, 29, 29, 0) 0.04%, rgba(29, 29, 29, 0.8) 99.5%);
