@@ -1,5 +1,10 @@
-import { ReactNode } from "react";
+import {ReactNode} from "react";
 
 export interface SliderProps {
-	children: ReactNode;
+	slides: ISlide[]
+	children: ReactNode
+}
+
+export interface ISlide {
+	text: string;
 }

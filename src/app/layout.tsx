@@ -2,6 +2,7 @@ import 'stylesheets/main.scss'
 import {ReactNode} from "react";
 import {MainLayout} from "layouts";
 import { Roboto } from 'next/font/google';
+import '../components/Slider/Slider.css'
 
 export const metadata = {
   title: 'Movie',

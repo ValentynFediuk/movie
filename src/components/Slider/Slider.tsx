@@ -1,32 +1,45 @@
 'use client'
 
-import { FC, useState } from 'react'
+import React, {Children, cloneElement, FC} from 'react'
 import { SliderProps } from './Slider.props'
 import styles from './Slider.module.scss';
-import 'keen-slider/keen-slider.min.css'
-import { useKeenSlider } from 'keen-slider/react'
-import Gg from '../../../public/images/mock-hero-bg.jpeg'
 
-export const Slider: FC<SliderProps> = ( {children} ) => {
-	console.log(children)
-	const [currentSlide, setCurrentSlide] = useState(0)
-	const [loaded, setLoaded] = useState(false)
-	const [sliderRef, instanceRef] = useKeenSlider({
-		initial: 0,
-		slideChanged(slider) {
-			setCurrentSlide(slider.track.details.rel)
-		},
-		created() {
-			setLoaded(true)
-		},
-	})
+import { useState } from "react";
+import clsx from "clsx";
+import {FeaturedMovie} from "components";
+
+export const Slider:FC<SliderProps> = ( {slides, children} ) => {
+	const [currentSlide, setCurrentSlide] = useState(0);
+
+	const handleSlideChange = (event) => {
+		setCurrentSlide(parseInt(event.target.value));
+	};
 
 	return (
-		<div ref={sliderRef} className='keen-slider'>
-			{/*<Gg />*/}
-			{/*{[children].map((child, index) => (*/}
-			{/*	<div key={index} className='keen-slider__slide'>{child}</div>*/}
-			{/*))}*/}
+		<div className={styles.slider}>
+			{slides.map((_slide, index) => (
+				<input
+					key={index}
+					type="radio"
+					name="slider"
+					id={`slide-${index}`}
+					value={index}
+					checked={currentSlide === index}
+					onChange={handleSlideChange}
+				/>
+			))}
+			<div className={styles.slides}>
+				{slides.map((slide, index) => (
+					<div key={index} className={clsx(styles.slide, currentSlide === index && styles.active)}>
+						<FeaturedMovie {...slide} />
+					</div>
+				))}
+			</div>
+			<div className={styles.indicators}>
+				{slides.map((_slide, index) => (
+					<label key={index} htmlFor={`slide-${index}`}></label>
+				))}
+			</div>
 		</div>
-	)
-};
+	);
+}
