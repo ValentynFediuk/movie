@@ -1,4 +1,4 @@
-import {ReactNode} from "react";
+import { ReactNode } from "react";
 
 export interface SliderProps {
 	slides: ISlide[]
@@ -6,5 +6,9 @@ export interface SliderProps {
 }
 
 export interface ISlide {
-	text: string;
+	id: number
+	genre: string
+	rating: number
+	title: string
+	description: string
 }

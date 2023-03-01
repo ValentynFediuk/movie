@@ -1,6 +1,6 @@
-export * from './Genre/Genre';
-export * from './FeaturedMovie/FeaturedMovie';
-export * from './Rating/Rating';
-export * from './Title/Title';
-export * from './Button/Button';
-export * from './Slider/Slider';
+export { Genre } from './Genre/Genre';
+export { FeaturedMovie } from './FeaturedMovie/FeaturedMovie';
+export { Rating } from './Rating/Rating';
+export { Title } from './Title/Title';
+export { Button } from './Button/Button';
+export { Slider } from './Slider/Slider';

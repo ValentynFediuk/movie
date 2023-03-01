@@ -2,7 +2,7 @@ import 'stylesheets/main.scss'
 import {ReactNode} from "react";
 import {MainLayout} from "layouts";
 import { Roboto } from 'next/font/google';
-import '../components/Slider/Slider.css'
+import 'keen-slider/keen-slider.min.css'
 
 export const metadata = {
   title: 'Movie',
@@ -14,8 +14,6 @@ const roboto = Roboto({
   subsets: ['latin'],
   display: 'swap'
 })
-
-
 
 const RootLayout = ({children}: { children: ReactNode }) => (
     <html className={roboto.className} lang='en'>

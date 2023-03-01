@@ -51,12 +51,26 @@
       }
     }
 
-    &:hover {
-      &:after {
+    &:after {
         @include overlay {
+          transition: 0.5s ease-in-out;
+          top: 56px;
+          bottom: 56px;
+          left: 50%;
+          right: 50%;
           border-radius: $button-border-radius;
           background: $gradient-btn-hover-background;
           z-index: -1;
+        }
+    }
+
+    &:hover {
+      &:after {
+        @include overlay {
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
         }
       }
     }
