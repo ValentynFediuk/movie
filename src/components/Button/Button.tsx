@@ -18,6 +18,7 @@ export const Button: React.FC<ButtonProps> = ({
 			[styles.secondary]: appearance === 'secondary',
 			[styles.white]: appearance === 'white',
 			[styles.gradient]: appearance === 'gradient',
+			[styles.transparent]: appearance === 'transparent',
 		})}
 		onClick={handleClick}
 		{...props}

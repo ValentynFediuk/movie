@@ -2,13 +2,13 @@
   font-size: 1.8rem;
   font-weight: 500;
   line-height: 2.4rem;
-  padding: 1.6rem;
   text-shadow: $button-text-shadow;
   box-shadow: $button-box-shadow;
   border-radius: $button-border-radius;
-  transition: 0.5s ease-in-out;
+  transition: $button-transition;
   width: 100%;
   max-width: 28.8rem;
+  height: 5.6rem;
 
   &.primary {
     background: $primary-btn-background;
@@ -40,6 +40,13 @@
   &.gradient {
     position: relative;
     z-index: 0;
+    > a {
+      position: relative;
+      z-index: 9;
+      display: grid;
+      place-items: center;
+      height: inherit;
+    }
 
     &:before {
       @include overlay {
@@ -53,9 +60,9 @@
 
     &:after {
         @include overlay {
-          transition: 0.5s ease-in-out;
-          top: 56px;
-          bottom: 56px;
+          transition: $button-transition;
+          top: 5.6rem;
+          bottom: 5.6rem;
           left: 50%;
           right: 50%;
           border-radius: $button-border-radius;
@@ -73,6 +80,22 @@
           right: 0;
         }
       }
+    }
+  }
+  &.transparent {
+    background: transparent;
+    box-shadow: none;
+    height: auto;
+    width: auto;
+    a {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    svg {
+      width: 12px;
+      height: 8px;
     }
   }
 }

@@ -1,6 +1,8 @@
+import { NewReleases } from "features"
+
 const Home = () => (
 	<main>
-			sdfsdfsd
+		<NewReleases />
 	</main>
 )
 

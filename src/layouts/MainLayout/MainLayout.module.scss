@@ -1,3 +1,7 @@
-.layout :global(.keen-slider:not([data-keen-slider-disabled])){
-  user-select: auto;
+.layout {
+  min-height: 100vh;
+  background: $dark;
+  & :global(.keen-slider:not([data-keen-slider-disabled])){
+    user-select: auto;
+  }
 }

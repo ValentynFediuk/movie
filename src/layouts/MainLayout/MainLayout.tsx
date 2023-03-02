@@ -9,7 +9,7 @@ import styles from './MainLayout.module.scss';
 export const MainLayout: FC<MainLayoutProps> = ({ children }) => (
     <div className={styles.layout}>
       <Header>
-        <Slider slides={slides}>
+        <Slider slides={slides} slidesPerView={1} dots>
           {slides.map(slide => (
             <FeaturedMovie key={slide.id} {...slide} className={clsx('keen-slider__slide')} />
           ))}

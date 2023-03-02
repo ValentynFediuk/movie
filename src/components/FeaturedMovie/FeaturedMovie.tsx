@@ -2,10 +2,18 @@ import { FC } from 'react'
 import { Button, Genre, Rating, Title } from "components"
 import clsx from "clsx";
 import Image from 'next/image';
+import Link from 'next/link';
 import { FeaturedMovieProps } from './FeaturedMovie.props'
 import styles from './FeaturedMovie.module.scss'
 
-export const FeaturedMovie: FC<FeaturedMovieProps> = ({image, genre, rating, title, description, className}) => (
+export const FeaturedMovie: FC<FeaturedMovieProps> = ({
+	image,
+	genre,
+	rating,
+	title,
+	description,
+	className
+}) => (
 	<div className={clsx(styles.movie, className)}>
 		<Image
 			fill
@@ -19,7 +27,9 @@ export const FeaturedMovie: FC<FeaturedMovieProps> = ({image, genre, rating, tit
 				<Rating color='white' count={rating}/>
 				<Title typeTitle='h1' size='l'>{title}</Title>
 				<p>{description}</p>
-				<Button appearance='gradient' typeBtn='button'>Watch now</Button>
+				<Button appearance='gradient' typeBtn='button'>
+					<Link href='/test-route'>Watch now</Link>
+				</Button>
 			</div>
 		</div>
 	</div>

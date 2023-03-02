@@ -14,5 +14,13 @@ export const slides = [
 		rating: 5,
 		title: 'Godzilla vs. Kong',
 		description: 'In a time when monsters walk the Earth, humanity’s fight for its future sets Godzilla and Kong on a collision course that will see the two most powerful forces of nature on the planet collide in a spectacular battle for the ages.'
+	},
+	{
+		id: 2,
+		image: '/images/mock-hero-bg-gozila.jpg',
+		genre: 'test',
+		rating: 5,
+		title: 'Godzilla vs. Kong',
+		description: 'In a time when monsters walk the Earth, humanity’s fight for its future sets Godzilla and Kong on a collision course that will see the two most powerful forces of nature on the planet collide in a spectacular battle for the ages.'
 	}
 ]

@@ -1,16 +1,27 @@
 'use client'
 
-import {FC, useState} from 'react'
+import { FC, useState } from 'react'
 import { useKeenSlider } from 'keen-slider/react'
+import clsx from "clsx";
 import { SliderProps } from './Slider.props'
 import styles from './Slider.module.scss';
-import clsx from "clsx";
 
-export const Slider:FC<SliderProps> = ( {slides, children} ) => {
+export const Slider: FC<SliderProps> = ({
+	slides,
+	slidesPerView,
+	dots = false,
+	children
+}) => {
 	const [currentSlide, setCurrentSlide] = useState(0)
 	const [loaded, setLoaded] = useState(false)
+
 	const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
 		initial: 0,
+		mode: "snap",
+		slides: {
+			perView: slidesPerView,
+			spacing: 15,
+		},
 		slideChanged(slider) {
 			setCurrentSlide(slider.track.details.rel)
 		},
@@ -20,75 +31,52 @@ export const Slider:FC<SliderProps> = ( {slides, children} ) => {
 	})
 
 	return (
-		<>
-			<div className="navigation-wrapper">
-				<div ref={sliderRef} className="keen-slider">
-					{children}
-				</div>
-				{loaded && instanceRef.current && (
-					<>
-						<Arrow
-							left
-							onClick={(e: any) =>
-								e.stopPropagation() || instanceRef.current?.prev()
-							}
-							disabled={currentSlide === 0}
-						/>
-
-						<Arrow
-							onClick={(e: any) =>
-								e.stopPropagation() || instanceRef.current?.next()
-							}
-							disabled={
-								currentSlide ===
-								instanceRef.current.track.details.slides.length - 1
-							}
-						/>
-					</>
-				)}
+		<div className={styles.navigation_wrapper}>
+			<div ref={sliderRef} className={clsx(styles.slider, 'keen-slider')}>
+				{children}
 			</div>
 			{loaded && instanceRef.current && (
-				<div className="dots">
-					{[
-						...Array(instanceRef.current.track.details.slides.length).keys(),
-					].map((idx) => {
-						return (
-							<button
-								key={idx}
-								onClick={() => {
-									instanceRef.current?.moveToIdx(idx)
-								}}
-								className={"dot" + (currentSlide === idx ? " active" : "")}
-							></button>
-						)
-					})}
+				<>
+					<button
+						type='button'
+						onClick={(e: any) => e.stopPropagation() || instanceRef.current?.prev()}
+						className={clsx(styles.arrow_wrapper, styles.arrow_wrapper_left, currentSlide === 0 && styles.arrow__disabled)}>
+						<svg
+							className={clsx(styles.arrow, styles.arrow__left)}
+							viewBox='0 0 8 12'
+						>
+								<use href='/icons/sprite.svg#arrow' />
+						</svg>
+					</button>
+					<button
+						type='button'
+						onClick={(e: any) => e.stopPropagation() || instanceRef.current?.next()}
+						className={clsx(styles.arrow_wrapper, styles.arrow_wrapper_right, currentSlide === instanceRef.current.track.details.slides.length - 1 && styles.arrow__disabled)}
+						// aria-label={`Go to slide ${currentSlide + 1}`}
+					>
+						<svg
+							viewBox='0 0 8 12'
+						>
+							<use href='/icons/sprite.svg#arrow' />
+						</svg>
+					</button>
+				</>
+			)}
+			{dots && loaded && instanceRef.current && (
+				<div className={styles.dots}>
+					{slides.map(slide => (
+						<button
+							type='button'
+							key={slide.id}
+							onClick={() => {
+								instanceRef.current?.moveToIdx(slide.id)
+							}}
+							className={clsx(styles.dot, currentSlide === slide.id && styles.active)}
+							aria-label={`Go to slide ${slide.id}`}
+						/>
+					))}
 				</div>
 			)}
-		</>
-	)
-}
-
-function Arrow(props: {
-	disabled: boolean
-	left?: boolean
-	onClick: (e: any) => void
-}) {
-	const disabeld = props.disabled ? " arrow--disabled" : ""
-	return (
-		<svg
-			onClick={props.onClick}
-			className={`arrow ${
-				props.left ? "arrow--left" : "arrow--right"
-			} ${disabeld}`}
-			xmlns="http://www.w3.org/2000/svg"
-			viewBox="0 0 24 24"
-		>
-			{props.left && (
-				<path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
-			)}
-			{!props.left && (
-				<path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
-			)}
-		</svg>
+		</div>
 	)
 }

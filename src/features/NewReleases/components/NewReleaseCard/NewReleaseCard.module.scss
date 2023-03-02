@@ -1,0 +1,17 @@
+.card {
+  height: 44rem;
+  min-width: 29.2rem;
+  max-width: 29.2rem;
+  display: flex;
+  align-items: flex-end;
+  .image {
+    z-index: -1;
+  }
+  .description {
+    padding: 2.4rem;
+    display: inline-flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+}
