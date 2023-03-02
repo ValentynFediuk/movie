@@ -29,7 +29,7 @@ export const Slider: FC<SliderProps> = ({
 			setLoaded(true)
 		},
 	})
-
+	loaded && instanceRef.current && console.log(instanceRef, currentSlide)
 	return (
 		<div className={styles.navigation_wrapper}>
 			<div ref={sliderRef} className={clsx(styles.slider, 'keen-slider')}>
@@ -51,8 +51,7 @@ export const Slider: FC<SliderProps> = ({
 					<button
 						type='button'
 						onClick={(e: any) => e.stopPropagation() || instanceRef.current?.next()}
-						className={clsx(styles.arrow_wrapper, styles.arrow_wrapper_right, currentSlide === instanceRef.current.track.details.slides.length - 1 && styles.arrow__disabled)}
-						// aria-label={`Go to slide ${currentSlide + 1}`}
+						className={clsx(styles.arrow_wrapper, styles.arrow_wrapper_right, currentSlide === instanceRef.current.track.details.maxIdx && styles.arrow__disabled)}
 					>
 						<svg
 							viewBox='0 0 8 12'
