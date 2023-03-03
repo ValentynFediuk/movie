@@ -1,0 +1,25 @@
+.card {
+  height: 73.06rem;
+  min-width: 50.04rem;
+  max-width: 50.04rem;
+  display: flex;
+  align-items: flex-end;
+  @include media-sm {
+    height: 44rem;
+    min-width: 32rem;
+  }
+  .image {
+    z-index: -1;
+  }
+  .description {
+    padding: 4rem 2.4rem;
+    display: inline-flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1.6rem;
+    h2 {
+      font-size: 2.2rem;
+      line-height: 3rem;
+    }
+  }
+}

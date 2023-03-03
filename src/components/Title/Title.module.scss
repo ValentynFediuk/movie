@@ -1,0 +1,26 @@
+.title {
+  font-weight: 500;
+  &.l {
+    font-size: 5.6rem;
+    line-height: 6.4rem;
+    @include  media-lg {
+      font-size: 4rem;
+      line-height: 5.4rem;
+    }
+    @include media-sm {
+      font-size: 2rem;
+      line-height: 2.5rem;
+    }
+  }
+  &.m{
+    font-size: 3.2rem;
+    line-height: 4rem;
+  }
+  &.s {
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+  }
+}
+
+
+

@@ -1,0 +1,8 @@
+.wrapper {
+  > button {
+    margin: 0 0 2.4rem 5.2rem;
+    @include media-sm {
+      margin: 0 0 2.4rem 2rem;
+    }
+  }
+}
