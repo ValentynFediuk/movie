@@ -1,26 +1,30 @@
 'use client'
 
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useKeenSlider } from 'keen-slider/react'
 import clsx from "clsx";
 import { SliderProps } from './Slider.props'
 import styles from './Slider.module.scss';
+import { useWindowSize } from "../../hooks";
 
 export const Slider: FC<SliderProps> = ({
 	slides,
 	slidesPerView,
 	dots = false,
+	spacing = 0,
 	children
 }) => {
 	const [currentSlide, setCurrentSlide] = useState(0)
 	const [loaded, setLoaded] = useState(false)
+	let windowSize
+	if (typeof window !== "undefined") {
+		windowSize = useWindowSize()
+	}
 
-	const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
-		initial: 0,
-		mode: "snap",
+	const [sliderRef, instanceRef] =  useKeenSlider<HTMLDivElement>({
 		slides: {
 			perView: slidesPerView,
-			spacing: 15,
+			spacing,
 		},
 		slideChanged(slider) {
 			setCurrentSlide(slider.track.details.rel)
@@ -29,12 +33,23 @@ export const Slider: FC<SliderProps> = ({
 			setLoaded(true)
 		},
 	})
-	loaded && instanceRef.current && console.log(instanceRef, currentSlide)
+
+	useEffect(() => {
+		const updateSliderTimeout = setTimeout(() => {
+			instanceRef?.current?.update();
+		}, 1000)
+
+		return () => clearTimeout(updateSliderTimeout)
+	}, [windowSize?.width, loaded]);
+
 	return (
+
 		<div className={styles.navigation_wrapper}>
-			<div ref={sliderRef} className={clsx(styles.slider, 'keen-slider')}>
-				{children}
-			</div>
+			{children &&
+          <div ref={sliderRef} className={clsx(styles.slider, 'keen-slider')}>
+						{children}
+          </div>
+			}
 			{loaded && instanceRef.current && (
 				<>
 					<button

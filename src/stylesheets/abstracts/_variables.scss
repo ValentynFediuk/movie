@@ -1,49 +1,10 @@
-// -----------------------------------------------------------------------------
-// This file contains all application-wide Sass variables.
-// -----------------------------------------------------------------------------
-
-
-
-
-
-/// Regular font family
-/// @type List
-$text-font-stack: 'Open Sans', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
-
-/// Code (monospace) font family
-/// @type List
-$code-font-stack: 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Monaco', monospace !default;
-
-/// Copy text color
-/// @type Color
-$text-color: #FFFFFF !default;
-
-/// Main brand color
-/// @type Color
-$brand-color: rgb(229, 0, 80) !default;
-
-/// Light grey
-/// @type Color
-$light-grey: rgb(237, 237, 237) !default;
-
-/// Medium grey
-/// @type Color
-$mid-grey: rgb(153, 153, 153) !default;
-
-/// Dark grey
-/// @type Color
-$dark-grey: rgb(68, 68, 68) !default;
-
-
-
-
 $body-font-size: 1.6rem;
 
+$text-color: #FFFFFF !default;
 $dark: #1D1D1D;
 $primary-teal: #0FEFFD;
 $primary-white: #FFFFFF;
 
-// Buttons
 $button-transition: 0.5s ease-in-out;
 
 $button-border-radius: 4rem;
@@ -66,24 +27,14 @@ $gradient-btn-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 
 
 $gradient-btn-hover-background: linear-gradient(rgba(44, 44, 44, 0.3) 0 0) content-box, linear-gradient(rgba(44, 44, 44, 0.3) 0 0);
 
-// Slider
 $slider-arrow-transition: 0.5s ease-in-out;
 
-/// Container's maximum width
-/// @type Length
-$max-width: 126.6rem !default;
-
-/// Breakpoints map
-/// @prop {String} keys - Keys are identifiers mapped to a given length
-/// @prop {Map} values - Values are actual breakpoints expressed in pixels
 $breakpoints: (
-  'small': 32.0rem,
-  'medium': 76.8rem,
-  'large': 102.4rem,
+  'xxl': 87.5rem,
+  'xl': 75rem,
+  'lg': 62rem,
+  'md': 48rem,
+  'sm': 36rem,
 ) !default;
 
-/// Relative or absolute URL where all assets are served from
-/// @type String
-/// @example scss - When using a CDN
-///   $base-url: 'https://cdn.example.com/assets/';
 $base-url: '/' !default;

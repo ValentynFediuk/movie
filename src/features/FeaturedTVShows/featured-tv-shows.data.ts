@@ -1,4 +1,4 @@
-export const newReleasesData = [
+export const featuredTvShowsData = [
 	{
 			id: 0,
 			image: '/images/mock-tv-show-preview.jpeg',

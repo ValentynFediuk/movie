@@ -2,10 +2,10 @@ import { FC } from 'react'
 import { Button } from "components/Button/Button";
 import Link from 'next/link';
 import { Slider } from "components/Slider/Slider";
-import { newReleasesData } from "features/NewReleases/new-releases.data";
 import styles from './NewReleases.module.scss';
 import { NewReleasesProps } from './NewReleases.props'
 import { NewReleaseCard } from './components/NewReleaseCard/NewReleaseCard';
+import { newReleasesData } from './new-releases.data'
 
 export const NewReleases: FC<NewReleasesProps> = () => (
     <div className={styles.wrapper}>
@@ -21,6 +21,7 @@ export const NewReleases: FC<NewReleasesProps> = () => (
         <Slider
           slides={newReleasesData}
           slidesPerView='auto'
+          spacing={16}
         >
           {newReleasesData.map(release => (
             <NewReleaseCard key={release.id} {...release} className='keen-slider__slide' />
@@ -28,4 +29,4 @@ export const NewReleases: FC<NewReleasesProps> = () => (
         </Slider>
       </div>
     </div>
-  );
+  )

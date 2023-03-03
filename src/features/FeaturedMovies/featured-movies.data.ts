@@ -1,4 +1,4 @@
-export const slides = [
+export const featuredMoviesData = [
 	{
 		id: 0,
 		image: '/images/mock-hero-bg.jpeg',

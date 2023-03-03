@@ -4,6 +4,7 @@ export interface SliderProps {
 	slides: ISlide[]
 	slidesPerView: number | "auto"
 	dots?: boolean
+	spacing?: number
 	children: ReactNode
 }
 

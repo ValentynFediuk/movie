@@ -21,16 +21,14 @@ export const FeaturedMovie: FC<FeaturedMovieProps> = ({
 			src={image}
 			alt='Picture of the author'
 		/>
-		<div className='container'>
-			<div className={styles.movie_info}>
-				<Genre appearance='teal'>{genre}</Genre>
-				<Rating color='white' count={rating}/>
-				<Title typeTitle='h1' size='l'>{title}</Title>
-				<p>{description}</p>
-				<Button appearance='gradient' typeBtn='button'>
-					<Link href='/test-route'>Watch now</Link>
-				</Button>
-			</div>
+		<div className={styles.movie_info}>
+			<Genre appearance='teal'>{genre}</Genre>
+			<Rating color='white' count={rating}/>
+			<Title typeTitle='h1' size='l'>{title}</Title>
+			<p>{description}</p>
+			<Button appearance='gradient' typeBtn='button'>
+				<Link href='/test-route'>Watch now</Link>
+			</Button>
 		</div>
 	</div>
 );
