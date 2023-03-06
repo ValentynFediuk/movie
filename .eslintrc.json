@@ -54,6 +54,7 @@
     "react/jsx-one-expression-per-line": "off",
     "no-use-before-define": "off",
     "import/prefer-default-export": "off",
+    "camelcase": "off",
     "import/extensions": [
       "error",
       "ignorePackages",

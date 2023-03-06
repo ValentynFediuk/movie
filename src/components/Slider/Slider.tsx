@@ -12,8 +12,9 @@ export const Slider: FC<SliderProps> = ({
 	slidesPerView,
 	dots = false,
 	spacing = 0,
-	children
+	children,
 }) => {
+
 	const [currentSlide, setCurrentSlide] = useState(0)
 	const [loaded, setLoaded] = useState(false)
 	let windowSize
@@ -33,7 +34,6 @@ export const Slider: FC<SliderProps> = ({
 			setLoaded(true)
 		},
 	})
-
 	useEffect(() => {
 		const updateSliderTimeout = setTimeout(() => {
 			instanceRef?.current?.update();

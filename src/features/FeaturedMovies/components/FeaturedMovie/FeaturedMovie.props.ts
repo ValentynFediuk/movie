@@ -1,8 +1,10 @@
 export interface FeaturedMovieProps {
-	image: string
+	id: number
+	backdrop_path: string
 	genre: string
-	rating: number
-	title: string
-	description: string
-	className: string
+	vote_average: number
+	original_title: string
+	overview: string
+	className: string,
+	homepage: string
 }
