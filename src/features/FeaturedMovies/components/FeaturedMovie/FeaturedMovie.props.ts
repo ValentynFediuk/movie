@@ -1,10 +1,10 @@
 export interface FeaturedMovieProps {
 	id: number
-	backdrop_path: string
-	genre: string
 	vote_average: number
+	overview?: string
+	backdrop_path: string
 	original_title: string
-	overview: string
-	className: string,
+	className: string
+	genres: any[]
 	homepage: string
 }

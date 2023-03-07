@@ -1,28 +1,62 @@
-import { Slider } from "components"
-import clsx from "clsx";
-import { FeaturedMovie } from './components/FeaturedMovie/FeaturedMovie';
-import styles from './FeaturedMovies.module.scss';
-import { FeaturedMovieProps } from './components/FeaturedMovie/FeaturedMovie.props';
+'use client'
 
-async function getData() {
-	const res = await fetch(`${process.env.BASE_URL}movie/popular?api_key=${process.env.API_KEY}`);
-	if (!res.ok) {
-		throw new Error('Failed to fetch data');
+import { Slider } from "components"
+import { useEffect, useState } from "react";
+import { ISlide } from "components/Slider/Slider.props";
+import styles from './FeaturedMovies.module.scss';
+
+export const FeaturedMovies = () => {
+	const [slides, setSlides] = useState<ISlide[]>([])
+	const [paginatedSlides, setPaginatedSlides] = useState()
+	const [perPage, setPerPage] = useState(3)
+
+	useEffect(() => {
+		const newPaginatedSlides = [];
+		for (let i = 0; i < perPage; i++) {
+			newPaginatedSlides.push(slides[i]);
+		}
+		setPaginatedSlides(newPaginatedSlides);
+	}, [slides, perPage]);
+	const getSlideDetails = async (movieId: number) => {
+		try {
+			const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}movie/${movieId}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`);
+			return await res.json()
+		} catch (e) {
+			console.log(e)
+		}
 	}
 
-	return res.json();
-}
+	const getSlides = async () => {
+		try {
+			const res = await fetch(
+				`${process.env.NEXT_PUBLIC_BASE_URL}movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
+			);
+			const data = await res.json();
+			const detailedSlidePromises = data.results.map(async (slide) => {
+				const detailedSlide = await getSlideDetails(slide.id);
+				return detailedSlide;
+			});
+			const detailedSlides = await Promise.all(detailedSlidePromises);
+			setSlides(detailedSlides);
+		} catch (e) {
+			console.log(e);
+		}
+	};
 
-export const FeaturedMovies = async () => {
-	const data = await getData()
+	useEffect(() => {
+		getSlides()
+	}, [])
 
+	useEffect(() => {
+		console.log(paginatedSlides)
+	}, [paginatedSlides])
+
+	if (slides[0] === undefined) {
+		return null
+	}
 	return (
 		<div className={styles.wrapper}>
-			<Slider slides={data.results} slidesPerView={1} dots>
-				{data.results.map((slide: JSX.IntrinsicAttributes & FeaturedMovieProps, index) => (
-					<FeaturedMovie key={slide.id} {...slide} className={clsx('keen-slider__slide')} />
-				))}
-			</Slider>
+			<Slider slides={paginatedSlides} slidesPerView={1} dots setPerPage={setPerPage}/>
 		</div>
 	)
 }

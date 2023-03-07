@@ -25,6 +25,7 @@
     "import/resolver": {
       "typescript": {},
       "node": {
+        "moduleDirectory": ["node_modules", ".next/server"],
         "paths": ["src"],
         "extensions": [
           ".js",
