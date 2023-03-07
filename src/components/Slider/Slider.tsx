@@ -51,9 +51,15 @@ export const Slider: FC<SliderProps> = ({
 		console.log(slides)
 	}, [slides])
 
-	const handleClickRightArrow = (event: any) => {
+	const handleClickRightArrow = async (event: any) => {
+		if (currentSlide === instanceRef.current.track.details.maxIdx) {
 			setPerPage((prev) => prev + 1)
+			await instanceRef?.current?.update();
 			instanceRef.current?.next()
+		}
+		instanceRef?.current?.update();
+
+		event.stopPropagation() || instanceRef.current?.next()
 
 	}
 
