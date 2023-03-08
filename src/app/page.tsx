@@ -1,12 +1,12 @@
 'use client'
 
-import { FeaturedMovies } from "features"
+import { FeaturedMovies, FeaturedTVShows, NewReleases } from "features"
 
 const Home = () => (
 		<main>
 			<FeaturedMovies />
-			{/*<NewReleases />*/}
-			{/*<FeaturedTVShows />*/}
+			<NewReleases />
+			<FeaturedTVShows />
 		</main>	
 	)
 

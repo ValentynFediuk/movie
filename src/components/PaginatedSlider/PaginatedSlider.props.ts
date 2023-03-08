@@ -1,17 +1,10 @@
 import { Dispatch, SetStateAction } from "react";
 
-export interface SliderProps {
-	slideType: 'featured' | 'releases'
+export interface PaginatedSliderProps {
 	slides: ISlide[]
 	paginatedSlides: ISlide[]
-	slidesPerView: number | "auto"
-	spacing?: number
 	perPage?: number
 	setPerPage?: Dispatch<SetStateAction<number>>
-	setQueryPage: Dispatch<SetStateAction<number>>
-	queryPage: number
-	getSlides: any
-	loading: boolean
 }
 
 export interface ISlide {

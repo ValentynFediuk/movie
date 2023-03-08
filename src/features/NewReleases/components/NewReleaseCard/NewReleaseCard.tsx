@@ -7,23 +7,30 @@ import { NewReleaseCardProps } from './NewReleaseCard.props'
 import styles from './NewReleaseCard.module.scss';
 
 export const NewReleaseCard: FC<NewReleaseCardProps> = ( {
-	image,
-	genre,
-	rating,
-	title,
+	poster_path,
+	genres,
+	vote_average,
+	original_title,
+	homepage,
 	className
 }) => (
-    <Link href='/test-release-card' className={clsx(styles.card, className)}>
+    <Link href={homepage?.length ? homepage : '/no-link'} className={clsx(styles.card, className)}>
 			<Image
 				fill
 				className={styles.image}
-				src={image}
+				src={`https://image.tmdb.org/t/p/original${poster_path}`}
 				alt='Picture of the author'
 			/>
 			<div className={styles.description}>
-				<Genre appearance='teal'>{genre}</Genre>
-				<Rating color='white' count={rating}/>
-				<Title typeTitle='h3' size='s'>{title}</Title>
+				<Genre appearance='teal'>
+					{
+						genres?.map((genre, index) => (
+							index !== genres.length - 1 ? `${genre.name}, ` : genre.name
+						))
+					}
+				</Genre>
+				<Rating color='white' count={Number(vote_average?.toFixed(0))}/>
+				<Title typeTitle='h3' size='s'>{original_title}</Title>
 			</div>
 		</Link>
 );

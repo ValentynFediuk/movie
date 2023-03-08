@@ -25,26 +25,26 @@ export const FeaturedMovie: FC<FeaturedMovieProps> = ({
 	homepage
 }) => (
 		<div className={clsx(styles.movie, className)}>
-						<Image
-								fill
-								className={styles.movie_image}
-								src={`https://image.tmdb.org/t/p/original${backdrop_path}`}
-								alt='Picture of the author'
-						/>
-						<div className={styles.movie_info}>
-								<Genre appearance='teal'>
-									{
-										genres.map((genre, index) => (
-											index !== genres.length - 1 ? `${genre.name}, ` : genre.name
-										))
-									}
-								</Genre>
-								<Rating color='white' count={Number(vote_average.toFixed(0))}/>
-								<Title typeTitle='h1' size='l'>{original_title}</Title>
-								<p>{overview}</p>
-								<Button appearance='gradient' typeBtn='button'>
-										<Link href={homepage}>{homepage.length ? 'Watch now' : 'Not available'}</Link>
-								</Button>
-						</div>
+				<Image
+						fill
+						className={styles.movie_image}
+						src={`https://image.tmdb.org/t/p/original${backdrop_path}`}
+						alt='Picture of the author'
+				/>
+				<div className={styles.movie_info}>
+						<Genre appearance='teal'>
+							{
+								genres?.map((genre, index) => (
+									index !== genres.length - 1 ? `${genre.name}, ` : genre.name
+								))
+							}
+						</Genre>
+						<Rating color='white' count={Number(vote_average?.toFixed(0))}/>
+						<Title typeTitle='h1' size='l'>{original_title}</Title>
+						<p>{overview}</p>
+						<Button appearance='gradient' typeBtn='button'>
+								<Link href={homepage?.length ? homepage : '/no-link'}>{homepage?.length ? 'Watch now' : 'Not available'}</Link>
+						</Button>
+				</div>
 		</div>
 	)

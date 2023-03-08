@@ -1,6 +1,6 @@
 'use client'
 
-import { Slider } from "components"
+import { PaginatedSlider } from "components"
 import { useEffect, useState } from "react";
 import { ISlide } from "components/Slider/Slider.props";
 import styles from './FeaturedMovies.module.scss';
@@ -8,7 +8,7 @@ import styles from './FeaturedMovies.module.scss';
 export const FeaturedMovies = () => {
 	const [slides, setSlides] = useState<ISlide[]>([])
 	const [paginatedSlides, setPaginatedSlides] = useState()
-	const [perPage, setPerPage] = useState(3)
+	const [perPage, setPerPage] = useState<number>(3)
 
 	useEffect(() => {
 		const newPaginatedSlides = [];
@@ -16,6 +16,7 @@ export const FeaturedMovies = () => {
 			newPaginatedSlides.push(slides[i]);
 		}
 		setPaginatedSlides(newPaginatedSlides);
+
 	}, [slides, perPage]);
 	const getSlideDetails = async (movieId: number) => {
 		try {
@@ -37,26 +38,27 @@ export const FeaturedMovies = () => {
 				return detailedSlide;
 			});
 			const detailedSlides = await Promise.all(detailedSlidePromises);
-			setSlides(detailedSlides);
+			setSlides([...slides, ...detailedSlides]);
 		} catch (e) {
 			console.log(e);
 		}
 	};
 
 	useEffect(() => {
-		getSlides()
+		(async () => {
+			await getSlides()
+		})()
 	}, [])
 
-	useEffect(() => {
-		console.log(paginatedSlides)
-	}, [paginatedSlides])
-
-	if (slides[0] === undefined) {
-		return null
-	}
 	return (
 		<div className={styles.wrapper}>
-			<Slider slides={paginatedSlides} slidesPerView={1} dots setPerPage={setPerPage}/>
+				<PaginatedSlider
+					slides={slides}
+					paginatedSlides={paginatedSlides}
+					perPage={perPage}
+					setPerPage={setPerPage}
+					getSlides={getSlides}
+				/>
 		</div>
 	)
 }
