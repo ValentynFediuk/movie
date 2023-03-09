@@ -16,12 +16,15 @@ export const NewReleases: FC<NewReleasesProps> = () => {
 
   useEffect(() => {
     const newPaginatedSlides = [];
+    // eslint-disable-next-line no-plusplus
     for (let i = 0; i < perPage; i++) {
       newPaginatedSlides.push(slides[i]);
     }
+    // @ts-ignore
     setPaginatedSlides(newPaginatedSlides);
 
   }, [slides, perPage]);
+  // eslint-disable-next-line consistent-return
   const getSlideDetails = async (movieId: number) => {
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}movie/${movieId}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`);
@@ -38,7 +41,7 @@ export const NewReleases: FC<NewReleasesProps> = () => {
         `${process.env.NEXT_PUBLIC_BASE_URL}movie/upcoming?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
       );
       const data = await res.json();
-      const detailedSlidePromises = data.results.map(async (slide) => {
+      const detailedSlidePromises = data.results.map(async (slide: { id: number; }) => {
         const detailedSlide = await getSlideDetails(slide.id);
         return detailedSlide;
       });
@@ -55,6 +58,8 @@ export const NewReleases: FC<NewReleasesProps> = () => {
     getSlides()
   }, [])
 
+  // @ts-ignore
+  // @ts-ignore
   return (
     <div className={styles.wrapper}>
       <Button appearance='transparent' typeBtn='button'>
@@ -68,6 +73,7 @@ export const NewReleases: FC<NewReleasesProps> = () => {
       <div className={styles.releases}>
           <Slider
             slides={slides}
+            // @ts-ignore
             paginatedSlides={paginatedSlides}
             slidesPerView='auto'
             perPage={perPage}

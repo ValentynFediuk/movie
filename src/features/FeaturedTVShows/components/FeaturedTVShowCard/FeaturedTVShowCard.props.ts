@@ -1,7 +1,8 @@
 export interface FeaturedTVShowCardProps {
-	image: string
-	genre: string
-	rating: number
-	title: string
+	poster_path: string,
+	genres: any[],
+	vote_average: number,
+	original_name: string,
+	homepage: string,
 	className: string
 }

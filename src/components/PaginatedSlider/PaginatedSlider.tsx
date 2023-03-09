@@ -14,7 +14,7 @@ export const PaginatedSlider: FC<PaginatedSliderProps> = ({
 }) => {
 	const [currentSlide, setCurrentSlide] = useState(0)
 	const [loaded, setLoaded] = useState(false)
-	const [initialPerPage, setInitialPerPage] = useState(perPage)
+	const [initialPerPage] = useState(perPage)
 	let windowSize
 	if (typeof window !== "undefined") {
 		windowSize = useWindowSize()
@@ -48,8 +48,11 @@ export const PaginatedSlider: FC<PaginatedSliderProps> = ({
 
 	const handleClickRightArrow = async (event: any) => {
 		if (currentSlide === instanceRef?.current?.track.details.maxIdx && currentSlide < 20) {
-			setPerPage((prev) => prev + 1)
+			if (setPerPage) {
+				setPerPage((prev) => prev + 1)
+			}
 		}
+		// eslint-disable-next-line no-unused-expressions
 		event.stopPropagation() || instanceRef.current?.next()
 	}
 
@@ -63,6 +66,8 @@ export const PaginatedSlider: FC<PaginatedSliderProps> = ({
 				className={clsx(styles.slider, 'keen-slider')}
 			>
 				{paginatedSlides?.map((slide, index) => (
+					// @ts-ignore
+					// eslint-disable-next-line react/no-array-index-key
 					<FeaturedMovie key={index} {...slide} className={clsx('keen-slider__slide')} />
 				))}
 				</div>
@@ -98,6 +103,7 @@ export const PaginatedSlider: FC<PaginatedSliderProps> = ({
 					{paginatedSlides?.map((slide, index) => (
 						<button
 							type='button'
+							/* eslint-disable-next-line react/no-array-index-key */
 							key={index}
 							onClick={() => {
 								instanceRef.current?.moveToIdx(index)

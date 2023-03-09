@@ -14,13 +14,12 @@ export const Slider: FC<SliderProps> = ({
 	slidesPerView,
 	spacing = 0,
 	perPage,
-	setPerPage,
 	slideType,
 	loading,
 }) => {
 	const [currentSlide, setCurrentSlide] = useState(0)
 	const [loaded, setLoaded] = useState(false)
-	const [initialPerPage, setInitialPerPage] = useState(perPage)
+	const [initialPerPage] = useState(perPage)
 	let windowSize
 	if (typeof window !== "undefined") {
 		windowSize = useWindowSize()
@@ -47,20 +46,12 @@ export const Slider: FC<SliderProps> = ({
 	}, [windowSize?.width, loaded]);
 
 	useEffect(() => {
+		// @ts-ignore
 		if (perPage > initialPerPage) {
 				instanceRef?.current?.update();
 				instanceRef.current?.next()
 		}
 	}, [slides])
-
-	const handleClickRightArrow = async (event: any) => {
-		console.log(currentSlide, instanceRef?.current?.slides?.length)
-		if (currentSlide === instanceRef.current.track.details.maxIdx && currentSlide < 20) {
-			setPerPage((prev) => prev + 1)
-		}
-		event.stopPropagation() || instanceRef.current?.next()
-	}
-
 	if (slides && slides[0] === undefined) return null
 	if (paginatedSlides && paginatedSlides[0] === undefined) return null
 
@@ -71,10 +62,14 @@ export const Slider: FC<SliderProps> = ({
 				className={clsx(styles.slider, 'keen-slider')}
 			>
 				{slideType === 'featured' && slides?.map((slide, index) => (
+					// @ts-ignore
+					// eslint-disable-next-line react/no-array-index-key
 					<FeaturedTVShowCard key={index} {...slide} className={clsx('keen-slider__slide')} />
 				))}
 
 				{slideType === 'releases' && slides?.map((slide, index) => (
+					// @ts-ignore
+					// eslint-disable-next-line react/no-array-index-key
 						<NewReleaseCard key={index} {...slide} className={clsx('keen-slider__slide')} />
 				))}
 				</div>
@@ -94,6 +89,7 @@ export const Slider: FC<SliderProps> = ({
 					{loading ? <div>Loading...</div> :
 						<button
 								type='button'
+							// @ts-ignore
 								onClick={(event) => event.stopPropagation() || instanceRef.current?.next()}
 								className={clsx(styles.arrow_wrapper, styles.arrow_wrapper_right, currentSlide === instanceRef.current.track.details.maxIdx && styles.arrow__disabled)}
 						>

@@ -10,7 +10,7 @@ export const FeaturedTVShowCard: FC<FeaturedTVShowCardProps> = ({
 	poster_path,
 	genres,
 	vote_average,
-																																	original_name,
+	original_name,
 	homepage,
 	className
 }) => (
