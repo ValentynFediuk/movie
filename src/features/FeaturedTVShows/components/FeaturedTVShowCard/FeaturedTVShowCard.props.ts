@@ -1,8 +1,8 @@
-export interface FeaturedTVShowCardProps {
-	poster_path: string,
-	genres: any[],
-	vote_average: number,
-	original_name: string,
-	homepage: string,
-	className: string
+import { ISlide } from 'types'
+
+export interface FeaturedTVShowCardProps extends ISlide {
+  original_name: string
+  poster_path: string
+  homepage: string
+  className: string
 }

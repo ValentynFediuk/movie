@@ -1,16 +1,15 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from 'react'
+import { ISlide } from 'types'
 
 export interface PaginatedSliderProps {
-	slides: ISlide[]
-	paginatedSlides: ISlide[]
-	perPage: number
-	setPerPage?: Dispatch<SetStateAction<number>>
+  slides: Slide[]
+  paginatedSlides: Slide[]
+  perPage: number
+  setPerPage?: Dispatch<SetStateAction<number>>
 }
 
-export interface ISlide {
-	id: number
-	vote_average: number
-	overview?: string
-	backdrop_path: string
-	original_title: string
+export interface Slide extends ISlide {
+  overview: string
+  backdrop_path: string
+
 }

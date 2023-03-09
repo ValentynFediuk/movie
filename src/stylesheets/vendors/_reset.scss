@@ -1,5 +1,5 @@
 :root {
-  font-size: 62.5%
+  font-size: 62.5%;
 }
 
 *,
@@ -9,6 +9,7 @@
 }
 
 html {
+  background: $dark;
   box-sizing: border-box;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
@@ -26,7 +27,12 @@ main {
   display: block;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
   font-size: inherit;
   font-weight: inherit;
@@ -72,7 +78,6 @@ textarea {
   margin: 0;
 }
 
-
 button,
 input {
   overflow: visible;
@@ -84,9 +89,9 @@ select {
 }
 
 button,
-[type="button"],
-[type="reset"],
-[type="submit"] {
+[type='button'],
+[type='reset'],
+[type='submit'] {
   -webkit-appearance: button;
   border: none;
   color: inherit;
