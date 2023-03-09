@@ -1,22 +1,16 @@
-
 import { FC, useEffect, useState } from 'react'
 import { useKeenSlider } from 'keen-slider/react'
 import clsx from "clsx";
 import { useWindowSize } from "hooks";
-import { NewReleaseCard } from "features/NewReleases/components/NewReleaseCard/NewReleaseCard";
-import { FeaturedTVShowCard } from "features/FeaturedTVShows/components/FeaturedTVShowCard/FeaturedTVShowCard";
-import { SliderProps } from './Slider.props'
-import styles from './Slider.module.scss';
+import { FeaturedMovie } from "features/FeaturedMovies/components/FeaturedMovie/FeaturedMovie";
+import { PaginatedSliderProps } from './PaginatedSlider.props'
+import styles from './PaginatedSlider.module.scss';
 
-export const Slider: FC<SliderProps> = ({
+export const PaginatedSlider: FC<PaginatedSliderProps> = ({
 	slides,
 	paginatedSlides,
-	slidesPerView,
-	spacing = 0,
 	perPage,
 	setPerPage,
-	slideType,
-	loading,
 }) => {
 	const [currentSlide, setCurrentSlide] = useState(0)
 	const [loaded, setLoaded] = useState(false)
@@ -28,8 +22,7 @@ export const Slider: FC<SliderProps> = ({
 
 	const [sliderRef, instanceRef] =  useKeenSlider<HTMLDivElement>({
 		slides: {
-			perView: slidesPerView,
-			spacing,
+			perView: 1,
 		},
 		slideChanged(slider) {
 			setCurrentSlide(slider.track.details.rel)
@@ -51,11 +44,10 @@ export const Slider: FC<SliderProps> = ({
 				instanceRef?.current?.update();
 				instanceRef.current?.next()
 		}
-	}, [slides])
+	}, [paginatedSlides])
 
 	const handleClickRightArrow = async (event: any) => {
-		console.log(currentSlide, instanceRef?.current?.slides?.length)
-		if (currentSlide === instanceRef.current.track.details.maxIdx && currentSlide < 20) {
+		if (currentSlide === instanceRef?.current?.track.details.maxIdx && currentSlide < 20) {
 			setPerPage((prev) => prev + 1)
 		}
 		event.stopPropagation() || instanceRef.current?.next()
@@ -70,12 +62,8 @@ export const Slider: FC<SliderProps> = ({
 				ref={sliderRef}
 				className={clsx(styles.slider, 'keen-slider')}
 			>
-				{slideType === 'featured' && slides?.map((slide, index) => (
-					<FeaturedTVShowCard key={index} {...slide} className={clsx('keen-slider__slide')} />
-				))}
-
-				{slideType === 'releases' && slides?.map((slide, index) => (
-						<NewReleaseCard key={index} {...slide} className={clsx('keen-slider__slide')} />
+				{paginatedSlides?.map((slide, index) => (
+					<FeaturedMovie key={index} {...slide} className={clsx('keen-slider__slide')} />
 				))}
 				</div>
 			{loaded && instanceRef.current && instanceRef.current.track.details && (
@@ -91,20 +79,34 @@ export const Slider: FC<SliderProps> = ({
 								<use href='/icons/sprite.svg#arrow' />
 						</svg>
 					</button>
-					{loading ? <div>Loading...</div> :
-						<button
-								type='button'
-								onClick={(event) => event.stopPropagation() || instanceRef.current?.next()}
-								className={clsx(styles.arrow_wrapper, styles.arrow_wrapper_right, currentSlide === instanceRef.current.track.details.maxIdx && styles.arrow__disabled)}
-						>
-								<svg
-										viewBox='0 0 8 12'
-								>
-										<use href='/icons/sprite.svg#arrow' />
-								</svg>
-						</button>
-					}
+					<button
+							type='button'
+
+							onClick={(event) => handleClickRightArrow(event)}
+							className={clsx(styles.arrow_wrapper, styles.arrow_wrapper_right, currentSlide === slides.length - 1 && styles.arrow__disabled)}
+					>
+							<svg
+									viewBox='0 0 8 12'
+							>
+									<use href='/icons/sprite.svg#arrow' />
+							</svg>
+					</button>
 				</>
+			)}
+			{loaded && instanceRef.current && (
+				<div className={styles.dots}>
+					{paginatedSlides?.map((slide, index) => (
+						<button
+							type='button'
+							key={index}
+							onClick={() => {
+								instanceRef.current?.moveToIdx(index)
+							}}
+							className={clsx(styles.dot, currentSlide === index && styles.active)}
+							aria-label={`Go to slide ${index}`}
+						/>
+					))}
+				</div>
 			)}
 		</div>
 	)

@@ -1,13 +1,61 @@
-import { FC } from 'react'
+'use client'
+
+import { FC, useEffect, useState } from 'react'
 import { Button } from "components/Button/Button";
 import Link from 'next/link';
 import { Slider } from "components/Slider/Slider";
 import { featuredTvShowsData } from "features/FeaturedTVShows/featured-tv-shows.data";
 import styles from './FeaturedTVShows.module.scss';
 import { FeaturedTVShowsProps } from './FeaturedTVShows.props'
-import { FeaturedTVShowCard } from './components/FeaturedTVShowCard/FeaturedTVShowCard';
 
-export const FeaturedTVShows: FC<FeaturedTVShowsProps> = () => (
+export const FeaturedTVShows: FC<FeaturedTVShowsProps> = () => {
+  const [slides, setSlides] = useState<ISlide[]>([])
+  const [paginatedSlides, setPaginatedSlides] = useState()
+  const [perPage, setPerPage] = useState<number>(7)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const newPaginatedSlides = [];
+    for (let i = 0; i < perPage; i++) {
+      newPaginatedSlides.push(slides[i]);
+    }
+    setPaginatedSlides(newPaginatedSlides);
+
+  }, [slides, perPage]);
+  const getSlideDetails = async (movieId: number) => {
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}tv/${movieId}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`);
+      return await res.json()
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  const getSlides = async () => {
+    try {
+      setLoading(true)
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/tv/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
+      );
+      const data = await res.json();
+      const detailedSlidePromises = data.results.map(async (slide) => {
+        const detailedSlide = await getSlideDetails(slide.id);
+        return detailedSlide;
+      });
+      const detailedSlides = await Promise.all(detailedSlidePromises);
+      setSlides([...slides, ...detailedSlides]);
+      setLoading(false)
+    } catch (e) {
+      console.log(e);
+      setLoading(false)
+    }
+  };
+
+  useEffect(() => {
+    getSlides()
+  }, [])
+
+  return (
     <div className={styles.wrapper}>
       <Button appearance='transparent' typeBtn='button'>
         <Link href='/tv-show'>
@@ -20,14 +68,18 @@ export const FeaturedTVShows: FC<FeaturedTVShowsProps> = () => (
       <div className={styles.releases}>
         {featuredTvShowsData &&
           <Slider
-            slides={featuredTvShowsData}
+            slides={slides}
+            paginatedSlides={paginatedSlides}
             slidesPerView='auto'
-          >
-            {featuredTvShowsData.map(release => (
-              <FeaturedTVShowCard key={release.id} {...release} className='keen-slider__slide' />
-            ))}
-          </Slider>
+            perPage={perPage}
+            setPerPage={setPerPage}
+            getSlides={getSlides}
+            slideType='featured'
+            loading={loading}
+            setLoading={setLoading}
+          />
         }
       </div>
     </div>
   )
+}

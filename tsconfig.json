@@ -25,7 +25,8 @@
       "components/*": ["components/*"],
       "stylesheets/*": ["stylesheets/*"],
       "layouts/*": ["layouts/*"],
-      "features/*": ["features/*"]
+      "features/*": ["features/*"],
+      "http/*": ["http/*"]
     }
   },
   "include": [
