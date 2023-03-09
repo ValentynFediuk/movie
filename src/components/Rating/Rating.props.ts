@@ -1,4 +1,4 @@
 export interface RatingProps {
-	color: 'white'
-	count: number
+  color: 'white'
+  count: number
 }

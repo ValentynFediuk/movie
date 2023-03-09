@@ -1,6 +1,7 @@
-export { Genre } from './Genre/Genre';
-export { Rating } from './Rating/Rating';
-export { Title } from './Title/Title';
-export { Button } from './Button/Button';
-export { Slider } from './Slider/Slider';
-export { PaginatedSlider } from './PaginatedSlider/PaginatedSlider';
+export { Genre } from './Genre/Genre'
+export { Rating } from './Rating/Rating'
+export { Title } from './Title/Title'
+export { Button } from './Button/Button'
+export { Slider } from './Slider/Slider'
+export { Spinner } from './Spinner/Spinner'
+export { PaginatedSlider } from './PaginatedSlider/PaginatedSlider'

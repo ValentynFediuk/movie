@@ -1,64 +1,51 @@
 'use client'
 
-import { PaginatedSlider } from "components"
-import { useEffect, useState } from "react";
-import { ISlide } from "components/Slider/Slider.props";
-import styles from './FeaturedMovies.module.scss';
+import { PaginatedSlider, Spinner } from 'components'
+import { useEffect, useState } from 'react'
+import { Slides } from 'components/Slider/Slider.props'
+import { useSlides } from 'http/hooks'
+import { usePaginateSlides } from 'hooks'
+import styles from './FeaturedMovies.module.scss'
 
 export const FeaturedMovies = () => {
-	const [slides, setSlides] = useState<ISlide[]>([])
-	const [paginatedSlides, setPaginatedSlides] = useState()
-	const [perPage, setPerPage] = useState<number>(3)
+  const [slides, setSlides] = useState<Slides[]>([])
+  const [paginatedSlides, setPaginatedSlides] = useState<Slides[]>([])
+  const [perPage, setPerPage] = useState<number>(3)
+  const [loading, setLoading] = useState(true)
 
-	useEffect(() => {
-		const newPaginatedSlides = [];
-		for (let i = 0; i < perPage; i++) {
-			newPaginatedSlides.push(slides[i]);
-		}
-		setPaginatedSlides(newPaginatedSlides);
+  useEffect(() => {
+    const newPaginatedSlides = usePaginateSlides(perPage, slides)
+    setPaginatedSlides(newPaginatedSlides)
+  }, [slides, perPage])
 
-	}, [slides, perPage]);
-	const getSlideDetails = async (movieId: number) => {
-		try {
-			const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}movie/${movieId}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`);
-			return await res.json()
-		} catch (e) {
-			console.log(e)
-		}
-	}
+  useEffect(() => {
+    (async () => {
+      try {
+        const detailedSlides: Slides[] = (await useSlides(
+          'movie',
+          'popular'
+        )) as Slides[]
+        setSlides(detailedSlides)
+        setLoading(false)
+      } catch (e) {
+        console.log(e)
+      }
+    })()
+  }, [])
 
-	const getSlides = async () => {
-		try {
-			const res = await fetch(
-				`${process.env.NEXT_PUBLIC_BASE_URL}movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
-			);
-			const data = await res.json();
-			const detailedSlidePromises = data.results.map(async (slide) => {
-				const detailedSlide = await getSlideDetails(slide.id);
-				return detailedSlide;
-			});
-			const detailedSlides = await Promise.all(detailedSlidePromises);
-			setSlides([...slides, ...detailedSlides]);
-		} catch (e) {
-			console.log(e);
-		}
-	};
-
-	useEffect(() => {
-		(async () => {
-			await getSlides()
-		})()
-	}, [])
-
-	return (
-		<div className={styles.wrapper}>
-				<PaginatedSlider
-					slides={slides}
-					paginatedSlides={paginatedSlides}
-					perPage={perPage}
-					setPerPage={setPerPage}
-					getSlides={getSlides}
-				/>
-		</div>
-	)
+  return (
+    <div className={styles.wrapper}>
+      {loading
+      ?
+        <Spinner />
+        :
+      <PaginatedSlider
+        slides={slides}
+        paginatedSlides={paginatedSlides}
+        perPage={perPage}
+        setPerPage={setPerPage}
+      />
+      }
+    </div>
+  )
 }

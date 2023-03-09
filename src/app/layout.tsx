@@ -1,7 +1,7 @@
 import 'stylesheets/main.scss'
-import {ReactNode} from "react";
-import {MainLayout} from "layouts";
-import { Roboto } from 'next/font/google';
+import { ReactNode } from 'react'
+import { MainLayout } from 'layouts'
+import { Roboto } from 'next/font/google'
 import 'keen-slider/keen-slider.min.css'
 
 export const metadata = {
@@ -12,17 +12,15 @@ export const metadata = {
 const roboto = Roboto({
   weight: ['400', '500', '700'],
   subsets: ['latin'],
-  display: 'swap'
+  display: 'swap',
 })
 
-const RootLayout = ({children}: { children: ReactNode }) => (
-    <html className={roboto.className} lang='en'>
-      <body>
-        <MainLayout>
-          {children}
-        </MainLayout>
-      </body>
-    </html>
-  )
+const RootLayout = ({ children }: { children: ReactNode }) => (
+  <html className={roboto.className} lang='en'>
+    <body>
+      <MainLayout>{children}</MainLayout>
+    </body>
+  </html>
+)
 
 export default RootLayout
