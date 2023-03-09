@@ -34,7 +34,6 @@
     &:hover {
       background: $white-btn-background-hover;
     }
-
   }
 
   &.gradient {
@@ -59,16 +58,16 @@
     }
 
     &:after {
-        @include overlay {
-          transition: $button-transition;
-          top: 5.6rem;
-          bottom: 5.6rem;
-          left: 50%;
-          right: 50%;
-          border-radius: $button-border-radius;
-          background: $gradient-btn-hover-background;
-          z-index: -1;
-        }
+      @include overlay {
+        transition: $button-transition;
+        top: 5.6rem;
+        bottom: 5.6rem;
+        left: 50%;
+        right: 50%;
+        border-radius: $button-border-radius;
+        background: $gradient-btn-hover-background;
+        z-index: -1;
+      }
     }
 
     &:hover {

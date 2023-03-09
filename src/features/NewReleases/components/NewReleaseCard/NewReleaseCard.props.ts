@@ -1,8 +1,6 @@
-export interface NewReleaseCardProps {
-	poster_path: string,
-	genres: any[],
-	vote_average: number,
-	original_title: string,
-	homepage: string,
-	className: string
+import { ISlide } from 'types/ISlide'
+
+export interface NewReleaseCardProps extends ISlide {
+  poster_path: string
+  className: string
 }

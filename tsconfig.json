@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -21,15 +25,37 @@
     ],
     "baseUrl": "src",
     "paths": {
-      "assets/*": ["assets/*"],
-      "components/*": ["components/*"],
-      "stylesheets/*": ["stylesheets/*"],
-      "layouts/*": ["layouts/*"],
-      "features/*": ["features/*"],
-      "http/*": ["http/*"]
+      "assets/*": [
+        "assets/*"
+      ],
+      "components/*": [
+        "components/*"
+      ],
+      "stylesheets/*": [
+        "stylesheets/*"
+      ],
+      "layouts/*": [
+        "layouts/*"
+      ],
+      "features/*": [
+        "features/*"
+      ],
+      "http/*": [
+        "http/*"
+      ],
+      "types/*": [
+        "types/*"
+      ]
     }
   },
   "include": [
-    "next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "/home/user/projects/movie/.next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

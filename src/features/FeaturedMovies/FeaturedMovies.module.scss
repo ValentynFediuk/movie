@@ -1,0 +1,6 @@
+.wrapper {
+  height: 64.8rem;
+  @include media-sm {
+    height: 55rem;
+  }
+}
