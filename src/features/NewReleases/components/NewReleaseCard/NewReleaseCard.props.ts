@@ -1,7 +1,8 @@
 export interface NewReleaseCardProps {
-	image: string
-	genre: string
-	rating: number
-	title: string
+	poster_path: string,
+	genres: any[],
+	vote_average: number,
+	original_title: string,
+	homepage: string,
 	className: string
 }

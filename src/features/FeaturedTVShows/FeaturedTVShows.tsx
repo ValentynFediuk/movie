@@ -5,6 +5,7 @@ import { Button } from "components/Button/Button";
 import Link from 'next/link';
 import { Slider } from "components/Slider/Slider";
 import { featuredTvShowsData } from "features/FeaturedTVShows/featured-tv-shows.data";
+import { ISlide } from "components/Slider/Slider.props";
 import styles from './FeaturedTVShows.module.scss';
 import { FeaturedTVShowsProps } from './FeaturedTVShows.props'
 
@@ -16,12 +17,15 @@ export const FeaturedTVShows: FC<FeaturedTVShowsProps> = () => {
 
   useEffect(() => {
     const newPaginatedSlides = [];
+    // eslint-disable-next-line no-plusplus
     for (let i = 0; i < perPage; i++) {
       newPaginatedSlides.push(slides[i]);
     }
+    // @ts-ignore
     setPaginatedSlides(newPaginatedSlides);
 
   }, [slides, perPage]);
+  // eslint-disable-next-line consistent-return
   const getSlideDetails = async (movieId: number) => {
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}tv/${movieId}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`);
@@ -38,7 +42,7 @@ export const FeaturedTVShows: FC<FeaturedTVShowsProps> = () => {
         `${process.env.NEXT_PUBLIC_BASE_URL}/tv/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
       );
       const data = await res.json();
-      const detailedSlidePromises = data.results.map(async (slide) => {
+      const detailedSlidePromises = data.results.map(async (slide: { id: number; }) => {
         const detailedSlide = await getSlideDetails(slide.id);
         return detailedSlide;
       });
@@ -69,6 +73,7 @@ export const FeaturedTVShows: FC<FeaturedTVShowsProps> = () => {
         {featuredTvShowsData &&
           <Slider
             slides={slides}
+            // @ts-ignore
             paginatedSlides={paginatedSlides}
             slidesPerView='auto'
             perPage={perPage}

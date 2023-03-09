@@ -12,12 +12,15 @@ export const FeaturedMovies = () => {
 
 	useEffect(() => {
 		const newPaginatedSlides = [];
+		// eslint-disable-next-line no-plusplus
 		for (let i = 0; i < perPage; i++) {
 			newPaginatedSlides.push(slides[i]);
 		}
+		// @ts-ignore
 		setPaginatedSlides(newPaginatedSlides);
 
 	}, [slides, perPage]);
+	// eslint-disable-next-line consistent-return
 	const getSlideDetails = async (movieId: number) => {
 		try {
 			const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}movie/${movieId}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`);
@@ -33,7 +36,7 @@ export const FeaturedMovies = () => {
 				`${process.env.NEXT_PUBLIC_BASE_URL}movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
 			);
 			const data = await res.json();
-			const detailedSlidePromises = data.results.map(async (slide) => {
+			const detailedSlidePromises = data.results.map(async (slide: { id: number; }) => {
 				const detailedSlide = await getSlideDetails(slide.id);
 				return detailedSlide;
 			});
@@ -54,6 +57,7 @@ export const FeaturedMovies = () => {
 		<div className={styles.wrapper}>
 				<PaginatedSlider
 					slides={slides}
+					// @ts-ignore
 					paginatedSlides={paginatedSlides}
 					perPage={perPage}
 					setPerPage={setPerPage}
