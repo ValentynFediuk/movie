@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { Slider } from 'components/Slider/Slider'
 import { ISlide } from 'types'
 import { getSlides } from 'api/hooks'
-import { Route } from 'next'
 import styles from './FeaturedTVShows.module.scss'
 
 export const FeaturedTVShows = () => {
@@ -30,7 +29,7 @@ export const FeaturedTVShows = () => {
   return (
     <div className={styles.wrapper}>
       <Button appearance='transparent' typeBtn='button'>
-        <Link href={('/tv-shows') as Route}>
+        <Link href='/tv-shows'>
           <span>Featured TV shows</span>
           <svg viewBox='0 0 8 12'>
             <use href='/icons/sprite.svg#arrow' />

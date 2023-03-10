@@ -3,7 +3,6 @@
 const nextConfig = {
   experimental: {
     appDir: true,
-    typedRoutes: true,
   },
   sassOptions: {
     prependData: `

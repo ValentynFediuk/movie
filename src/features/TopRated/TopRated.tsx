@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { Slider } from 'components/Slider/Slider'
 import { ISlide } from 'types'
 import { getSlides } from 'api/hooks'
-import { Route } from 'next'
 import styles from './TopRated.module.scss'
 
 export const TopRated = () => {
@@ -30,7 +29,7 @@ export const TopRated = () => {
   return (
     <div className={styles.wrapper}>
       <Button appearance='transparent' typeBtn='button'>
-        <Link href={('/top-rated') as Route}>
+        <Link href='/top-rated'>
           <span>Top rated</span>
           <svg viewBox='0 0 8 12'>
             <use href='/icons/sprite.svg#arrow' />
