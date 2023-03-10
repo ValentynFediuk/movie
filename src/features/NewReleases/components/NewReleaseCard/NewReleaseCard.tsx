@@ -3,6 +3,7 @@ import { Genre, Rating, Title } from 'components'
 import Image from 'next/image'
 import clsx from 'clsx'
 import Link from 'next/link'
+import { Route } from 'next'
 import { NewReleaseCardProps } from './NewReleaseCard.props'
 import styles from './NewReleaseCard.module.scss'
 
@@ -15,13 +16,13 @@ export const NewReleaseCard: FC<NewReleaseCardProps> = ({
   className,
 }) => (
   <Link
-    href={homepage?.length ? homepage : '/no-link'}
+    href={homepage?.length ? (`${homepage}`) as Route : ('!#') as Route}
     className={clsx(styles.card, className)}
   >
     <Image
       fill
       className={styles.image}
-      src={`https://image.tmdb.org/t/p/original${poster_path}`}
+      src={ poster_path ? `https://image.tmdb.org/t/p/original${poster_path}` : '/#'}
       alt='Picture of the author'
     />
     <div className={styles.description}>

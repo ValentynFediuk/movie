@@ -4,14 +4,14 @@ import Image from 'next/image'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { Route } from 'next'
-import { FeaturedTVShowCardProps } from './FeaturedTVShowCard.props'
-import styles from './FeaturedTVShowCard.module.scss'
+import { TopRatedCardProps } from './TopRatedCard.props'
+import styles from './TopRatedCard.module.scss'
 
-export const FeaturedTVShowCard: FC<FeaturedTVShowCardProps> = ({
+export const NewReleaseCard: FC<TopRatedCardProps> = ({
   poster_path,
   genres,
   vote_average,
-  original_name,
+  original_title,
   homepage,
   className,
 }) => (
@@ -22,7 +22,7 @@ export const FeaturedTVShowCard: FC<FeaturedTVShowCardProps> = ({
     <Image
       fill
       className={styles.image}
-      src={`https://image.tmdb.org/t/p/original${poster_path}`}
+      src={ poster_path ? `https://image.tmdb.org/t/p/original${poster_path}` : '/#'}
       alt='Picture of the author'
     />
     <div className={styles.description}>
@@ -32,8 +32,8 @@ export const FeaturedTVShowCard: FC<FeaturedTVShowCardProps> = ({
         )}
       </Genre>
       <Rating color='white' count={Number(vote_average?.toFixed(0))} />
-      <Title typeTitle='h2' size='m'>
-        {original_name}
+      <Title typeTitle='h3' size='s'>
+        {original_title}
       </Title>
     </div>
   </Link>

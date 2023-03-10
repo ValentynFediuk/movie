@@ -4,12 +4,16 @@
   max-width: 50.04rem;
   display: flex;
   align-items: flex-end;
+  position: relative;
+  &:before {
+    @include overlay {
+      background: rgba(29, 29, 29, 0.5);
+      z-index: 1;
+    }
+  }
   @include media-sm {
     height: 44rem;
     min-width: 32rem;
-  }
-  .image {
-    z-index: -1;
   }
   .description {
     padding: 4rem 2.4rem;
@@ -17,12 +21,6 @@
     align-items: flex-start;
     flex-direction: column;
     gap: 1.6rem;
-    h2 {
-      padding: 0 1rem;
-      box-shadow: 0 0 0.5rem 0;
-      background: rgba(29, 29, 29, 0.5);
-      font-size: 2.2rem;
-      line-height: 3rem;
-    }
+    z-index: 1;
   }
 }

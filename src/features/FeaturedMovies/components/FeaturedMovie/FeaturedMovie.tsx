@@ -5,15 +5,9 @@ import { Button, Genre, Rating, Title } from 'components'
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
+import type { Route } from 'next';
 import { FeaturedMovieProps } from './FeaturedMovie.props'
 import styles from './FeaturedMovie.module.scss'
-
-export interface IData {
-  homepage: string
-  genres: {
-    name: string
-  }
-}
 
 export const FeaturedMovie: FC<FeaturedMovieProps> = ({
   backdrop_path,
@@ -43,7 +37,7 @@ export const FeaturedMovie: FC<FeaturedMovieProps> = ({
       </Title>
       <p>{overview}</p>
       <Button appearance='gradient' typeBtn='button'>
-        <Link href={homepage?.length ? homepage : '/no-link'}>
+        <Link href={homepage?.length ? (`${homepage}`) as Route : ('!#') as Route}>
           {homepage?.length ? 'Watch now' : 'Not available'}
         </Link>
       </Button>
