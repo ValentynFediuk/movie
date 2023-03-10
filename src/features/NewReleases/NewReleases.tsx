@@ -1,26 +1,26 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Button } from 'components/Button/Button'
+import { Button } from 'components/ui/Button/Button'
 import Link from 'next/link'
 import { Slider } from 'components/Slider/Slider'
-import { useSlides } from 'http/hooks'
-import { Slides } from 'components/Slider/Slider.props'
+import { ISlide } from 'types'
+import { getSlides } from 'api'
 import styles from './NewReleases.module.scss'
 
 export const NewReleases = () => {
-  const [slides, setSlides] = useState<Slides[]>([])
+  const [slides, setSlides] = useState<ISlide[]>([])
 
   useEffect(() => {
     (async () => {
       try {
-        const detailedSlides: Slides[] = (await useSlides(
+        const detailedSlides: ISlide[] = (await getSlides(
           'movie',
           'upcoming'
-        )) as Slides[]
+        )) as ISlide[]
         setSlides(detailedSlides)
-      } catch (e) {
-        console.log(e)
+      } catch (error) {
+        console.log(error)
       }
     })()
   }, [])

@@ -12,9 +12,9 @@ export const PaginatedSlider: FC<PaginatedSliderProps> = ({
   perPage,
   setPerPage,
 }) => {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [loaded, setLoaded] = useState(false)
-  const [initialPerPage] = useState(perPage)
+  const [currentSlide, setCurrentSlide] = useState<number>(0)
+  const [loaded, setLoaded] = useState<boolean>(false)
+  const [initialPerPage] = useState<number>(perPage)
   let windowSize
   if (typeof window !== 'undefined') {
     windowSize = useWindowSize()
@@ -80,9 +80,7 @@ export const PaginatedSlider: FC<PaginatedSliderProps> = ({
         <>
           <button
             type='button'
-            onClick={(e: any) =>
-              e.stopPropagation() || instanceRef.current?.prev()
-            }
+            onClick={() => instanceRef.current?.prev()}
             className={clsx(
               styles.arrow_wrapper,
               styles.arrow_wrapper_left,
