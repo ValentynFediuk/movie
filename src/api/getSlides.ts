@@ -6,13 +6,13 @@ const getSlideDetails = async (movieId: number, movieType: string) => {
       `${process.env.NEXT_PUBLIC_BASE_URL}${movieType}/${movieId}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
     )
     return data
-  } catch (e) {
-    console.log(e)
-    throw e
+  } catch (error) {
+    console.log(error)
+    throw error
   }
 }
 
-export const useSlides = async (movieType: string, movieStatus: string) => {
+export const getSlides = async (movieType: string, movieStatus: string) => {
   try {
     const { data } = await $api.get(
       `${movieType}/${movieStatus}/?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
@@ -26,8 +26,8 @@ export const useSlides = async (movieType: string, movieStatus: string) => {
     )
 
     return fulfilledSlides.map((slide: any) => slide.value)
-  } catch (e) {
-    console.log(e)
-    throw e
+  } catch (error) {
+    console.log(error)
+    throw error
   }
 }
