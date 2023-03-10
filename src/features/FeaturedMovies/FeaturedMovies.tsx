@@ -2,14 +2,14 @@
 
 import { PaginatedSlider, Spinner } from 'components'
 import { useEffect, useState } from 'react'
-import { Slides } from 'components/Slider/Slider.props'
-import { useSlides } from 'http/hooks'
+import { getSlides } from 'api'
 import { usePaginateSlides } from 'hooks'
+import { ISlide } from 'types'
 import styles from './FeaturedMovies.module.scss'
 
 export const FeaturedMovies = () => {
-  const [slides, setSlides] = useState<Slides[]>([])
-  const [paginatedSlides, setPaginatedSlides] = useState<Slides[]>([])
+  const [slides, setSlides] = useState<ISlide[]>([])
+  const [paginatedSlides, setPaginatedSlides] = useState<ISlide[]>([])
   const [perPage, setPerPage] = useState<number>(3)
   const [loading, setLoading] = useState(true)
 
@@ -21,14 +21,14 @@ export const FeaturedMovies = () => {
   useEffect(() => {
     (async () => {
       try {
-        const detailedSlides: Slides[] = (await useSlides(
+        const detailedSlides: ISlide[] = (await getSlides(
           'movie',
           'popular'
-        )) as Slides[]
+        )) as ISlide[]
         setSlides(detailedSlides)
         setLoading(false)
-      } catch (e) {
-        console.log(e)
+      } catch (error) {
+        console.log(error)
       }
     })()
   }, [])
@@ -38,13 +38,13 @@ export const FeaturedMovies = () => {
       {loading
       ?
         <Spinner />
-        :
-      <PaginatedSlider
-        slides={slides}
-        paginatedSlides={paginatedSlides}
-        perPage={perPage}
-        setPerPage={setPerPage}
-      />
+      :
+        <PaginatedSlider
+          slides={slides}
+          paginatedSlides={paginatedSlides}
+          perPage={perPage}
+          setPerPage={setPerPage}
+        />
       }
     </div>
   )

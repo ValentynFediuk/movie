@@ -1,6 +1,7 @@
-export const usePaginateSlides = (perPage: number, slides: any[]) => {
+import { ISlide } from "types/ISlide";
+
+export const usePaginateSlides = (perPage: number, slides: ISlide[]) => {
   const newPaginatedSlides = []
-  // eslint-disable-next-line no-plusplus
   for (let i = 0; i < perPage; i++) {
     newPaginatedSlides.push(slides[i])
   }
