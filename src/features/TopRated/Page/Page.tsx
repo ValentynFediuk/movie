@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { ISlide } from 'types'
-import { getSlides } from 'api/hooks'
+import { getSlides } from 'api/index'
 import { Title } from 'components/ui/Title/Title'
 import { Button } from 'components/ui/Button/Button'
 import { Spinner } from 'components/ui/Spinner/Spinner'

@@ -1,11 +1,13 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { ISlide } from 'types'
-import { getSlides } from 'api/hooks'
+import { IGenre, ISlide } from 'types'
+import { getSlides } from 'api'
 import { Title } from 'components/ui/Title/Title'
 import { Button } from 'components/ui/Button/Button'
 import { Spinner } from 'components/ui/Spinner/Spinner'
+import Select from 'react-select'
+import { getGenres } from 'api/getGenres'
 import styles from './Page.module.scss';
 import { NewReleaseCard } from '../components/NewReleaseCard/NewReleaseCard'
 
@@ -13,6 +15,18 @@ export const NewReleasesPage = () => {
 	const [slides, setSlides] = useState<ISlide[]>([])
 	const [loading, setLoading] = useState<boolean>(true)
 	const [queryPage, setQueryPage] = useState<number>(1)
+	const [options, setOptions] = useState<IGenre[]>([])
+
+	useEffect(() => {
+		(async () => {
+			try {
+				const genres = await getGenres('movie')
+				setOptions(genres)
+			} catch (error) {
+				console.log(error)
+			}
+		})()
+	})
 
 	useEffect(() => {
 		(async () => {
@@ -44,6 +58,7 @@ export const NewReleasesPage = () => {
 						</svg>
 					</a>
 					<Title className={styles.title} typeTitle='h1' size='l'>New releases</Title>
+					<Select className={styles.select} options={options} />
 				</nav>
 							<div className={styles.grid}>
 								{slides.map((slide) => (
