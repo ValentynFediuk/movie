@@ -7,9 +7,9 @@ import { Slider } from 'components/Slider/Slider'
 import { ISlide } from 'types'
 import { getSlides } from 'api/hooks'
 import { Route } from 'next'
-import styles from './NewReleases.module.scss'
+import styles from './TopRated.module.scss'
 
-export const NewReleases = () => {
+export const TopRated = () => {
   const [slides, setSlides] = useState<ISlide[]>([])
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export const NewReleases = () => {
       try {
         const detailedSlides: ISlide[] = (await getSlides(
           'movie',
-          'upcoming',
+          'top_rated',
           1
         )) as ISlide[]
         setSlides(detailedSlides)
@@ -30,8 +30,8 @@ export const NewReleases = () => {
   return (
     <div className={styles.wrapper}>
       <Button appearance='transparent' typeBtn='button'>
-        <Link href={('/new-releases') as Route} >
-          <span>New releases</span>
+        <Link href={('/top-rated') as Route}>
+          <span>Top rated</span>
           <svg viewBox='0 0 8 12'>
             <use href='/icons/sprite.svg#arrow' />
           </svg>

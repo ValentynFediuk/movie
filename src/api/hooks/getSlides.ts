@@ -12,10 +12,10 @@ const getSlideDetails = async (movieId: number, movieType: string) => {
   }
 }
 
-export const getSlides = async (movieType: string, movieStatus: string) => {
+export const getSlides = async (movieType: string, movieStatus: string, queryPage: number) => {
   try {
     const { data } = await $api.get(
-      `${movieType}/${movieStatus}/?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
+      `${movieType}/${movieStatus}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&page=${queryPage}`
     )
     const detailedSlidePromises = data.results.map((slide: { id: number }) =>
       getSlideDetails(slide.id, movieType)

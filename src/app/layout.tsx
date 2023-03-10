@@ -7,6 +7,9 @@ import 'keen-slider/keen-slider.min.css'
 export const metadata = {
   title: 'Movie',
   description: 'Movie App',
+  icons: {
+    icon: 'icons/favicon.png',
+  },
 }
 
 const roboto = Roboto({
