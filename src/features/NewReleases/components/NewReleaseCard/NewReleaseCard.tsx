@@ -3,7 +3,6 @@ import { Genre, Rating, Title } from 'components'
 import Image from 'next/image'
 import clsx from 'clsx'
 import Link from 'next/link'
-import { Route } from 'next'
 import { NewReleaseCardProps } from './NewReleaseCard.props'
 import styles from './NewReleaseCard.module.scss'
 
@@ -16,7 +15,7 @@ export const NewReleaseCard: FC<NewReleaseCardProps> = ({
   className,
 }) => (
   <Link
-    href={homepage?.length ? (`${homepage}`) as Route : ('!#') as Route}
+    href={homepage?.length ? homepage : '!#'}
     className={clsx(styles.card, className)}
   >
     <Image
