@@ -5,7 +5,7 @@ import { Button } from 'components/ui/Button/Button'
 import Link from 'next/link'
 import { Slider } from 'components/Slider/Slider'
 import { ISlide } from 'types'
-import { getSlides } from 'http/hooks'
+import { getSlides } from 'api/hooks'
 import styles from './FeaturedTVShows.module.scss'
 
 export const FeaturedTVShows = () => {
