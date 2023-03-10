@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { Slider } from 'components/Slider/Slider'
 import { ISlide } from 'types'
 import { getSlides } from 'api/hooks'
+import { Route } from 'next'
 import styles from './FeaturedTVShows.module.scss'
 
 export const FeaturedTVShows = () => {
@@ -16,7 +17,8 @@ export const FeaturedTVShows = () => {
       try {
         const detailedSlides: ISlide[] = (await getSlides(
           'tv',
-          'popular'
+          'popular',
+          1
         )) as ISlide[]
         setSlides(detailedSlides)
       } catch (error) {
@@ -28,7 +30,7 @@ export const FeaturedTVShows = () => {
   return (
     <div className={styles.wrapper}>
       <Button appearance='transparent' typeBtn='button'>
-        <Link href='/tv-show'>
+        <Link href={('/tv-shows') as Route}>
           <span>Featured TV shows</span>
           <svg viewBox='0 0 8 12'>
             <use href='/icons/sprite.svg#arrow' />

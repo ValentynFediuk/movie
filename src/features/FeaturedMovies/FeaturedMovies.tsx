@@ -23,7 +23,8 @@ export const FeaturedMovies = () => {
       try {
         const detailedSlides: ISlide[] = (await getSlides(
           'movie',
-          'popular'
+          'popular',
+          1
         )) as ISlide[]
         setSlides(detailedSlides)
         setLoading(false)
