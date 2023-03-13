@@ -2,7 +2,7 @@
 
 import { PaginatedSlider, Spinner } from 'components'
 import { useEffect, useState } from 'react'
-import { getSlides } from 'api/hooks'
+import { getSlides } from 'api/index'
 import { usePaginateSlides } from 'hooks'
 import { ISlide } from 'types'
 import styles from './FeaturedMovies.module.scss'

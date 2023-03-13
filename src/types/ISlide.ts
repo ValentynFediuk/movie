@@ -1,6 +1,8 @@
+import { IGenre } from './IGenre'
+
 export interface ISlide {
   id: number
-  genres: IGenres[]
+  genres: IGenre[]
   vote_average: number
   original_title: string
   homepage: string
@@ -8,9 +10,4 @@ export interface ISlide {
   poster_path: string
   original_name: string
   backdrop_path: string
-}
-
-export interface IGenres {
-  id: number
-  name: string
 }
