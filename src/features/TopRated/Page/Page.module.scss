@@ -1,26 +1,60 @@
 .wrapper {
   padding: 3rem;
+
   > nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 3rem;
     position: relative;
     margin-bottom: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     > a {
-      position: absolute;
-      top: calc(50% - 1.2rem);
-      left: 0;
+      @include media-xl {
+        align-self: flex-start;
+        transform: translateY(50%);
+      }
+      @include media-sm {
+        transform: translateY(0);
+      }
       > svg {
         width: 1.2rem;
         height: 1.2rem;
         transform: rotate(180deg);
       }
     }
+    > .select {
+      max-width: 30rem;
+      flex: 1;
+      z-index: 9;
+      @include media-xl {
+        flex: 1;
+        max-width: 100vw;
+        width: 100%;
+        align-self: flex-end;
+      }
+    }
+    @include media-xl {
+      flex-direction: column;
+      gap: 5rem;
+    }
   }
+
   .title {
+    flex: 1;
     text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    @include media-xxl {
+      position: static;
+      transform: translateX(0);
+    }
+    @include media-xl {
+      position: absolute;
+      transform: translateX(-50%);
+    }
   }
+
   .grid {
     display: grid;
     place-items: center;
