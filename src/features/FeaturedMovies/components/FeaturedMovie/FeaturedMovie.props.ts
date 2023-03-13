@@ -1,4 +1,4 @@
-import { IGenres } from "types/ISlide";
+import { IGenre } from 'types'
 
 export interface FeaturedMovieProps {
   id: number
@@ -7,6 +7,6 @@ export interface FeaturedMovieProps {
   backdrop_path: string
   original_title: string
   className: string
-  genres: IGenres[]
+  genres: IGenre[]
   homepage: string
 }
